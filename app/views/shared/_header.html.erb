@@ -1,7 +1,7 @@
-<header>
-  <nav class="navbar navbar-expand navbar-light">
-    <%= link_to "VoiceToDo", root_path, class: 'navbar-brand' %>
-    <div id="Navber">
+<header class="navbar navbar-fixed-top navbar-inverse bg-info" >
+  <div class="container">
+    <%= link_to "VoiceToDo", root_path, id: "logo" %>
+    <nav class="navbar navbar-expand navbar-dark fixed-left">
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item active">
@@ -10,7 +10,7 @@
           <li class="nav-item active">
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
           </li>
-      <% else %>
+        <% else %>
           <li class="nav-item active">
             <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "nav-link" %>
           </li>
@@ -22,6 +22,6 @@
           </li>
         <% end %>
       </ul>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
