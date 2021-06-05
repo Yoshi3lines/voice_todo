@@ -1,0 +1,52 @@
+.container-login {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+.mw-xl {
+  max-width: 1200px;
+}
+
+// ログインしましたなどのフラッシュのスタイル
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.jumbotron {
+  background-image: image-url("sea-ocean.jpg");
+  background-size: cover;
+  padding-left: 10px;
+}
+
+.jumbotron-extend {
+  position: relative;
+  height: 100vh;
+  min-height: 300px;
+}
+
+// .main-container {
+//   background-image: image-url('sea-ocean.jpg')
+//   height: 800px;
+//   background-size: cover;
+//   opacity:  0.7; 
+// }
