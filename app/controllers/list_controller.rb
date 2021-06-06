@@ -1,0 +1,52 @@
+class ListController < ApplicationController
+  before_action :set_list, only: %i(edit update destroy)
+
+  def new
+    @list = List.new
+  end
+
+  def create
+    @list = List.new(list_params)
+    if @list.save
+      flash[:success] = "リストを作成しました"
+      redirect_to :root
+    else
+      render action: :new
+    end
+  end
+
+  def index
+    @lists = List.where(user: current_user).order("created_at ASC")
+  end
+
+  def edit
+    # @list = List.find_by(id: params[:id])
+  end
+
+  def update
+    # @list = List.find_by(id: params[:id])
+    if @list.update_attributes(list_params)
+      flash[:success] = "リスト名を変更しました"
+      redirect_to root_url
+    else
+      render action: :edit
+    end
+  end
+
+  def destroy
+    @list.destroy
+    flash[:danger] = "リストを削除しました"
+    redirect_to root_url
+  end
+
+
+  private
+    def list_params
+      params.require(:list).permit(:title).merge(user: current_user)
+    end
+
+    def set_list
+      @list = List.find_by(id: params[:id])
+    end
+
+end

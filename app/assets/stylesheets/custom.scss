@@ -2,6 +2,9 @@
   @extend .container-fluid;
   max-width: 576px;
   padding: 2rem;
+  &.sub-btn{
+    margin-top: 20px;
+  }
 }
 
 .mw-xl {
