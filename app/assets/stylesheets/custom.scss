@@ -2,11 +2,14 @@
   @extend .container-fluid;
   max-width: 576px;
   padding: 2rem;
+  &.sub-btn{
+    margin-top: 20px;
+  }
 }
 
-.mw-xl {
-  max-width: 1200px;
-}
+// .mw-xl {
+//   max-width: 1200px;
+// }
 
 // ログインしましたなどのフラッシュのスタイル
 .alert-notice {
