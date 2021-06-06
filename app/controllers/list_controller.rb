@@ -1,4 +1,5 @@
 class ListController < ApplicationController
+  before_action :set_list, only: %i(edit update)
 
   def new
     @list = List.new
@@ -17,10 +18,28 @@ class ListController < ApplicationController
     @lists = List.where(user: current_user).order("created_at ASC")
   end
 
+  def edit
+    # @list = List.find_by(id: params[:id])
+  end
+
+  def update
+    # @list = List.find_by(id: params[:id])
+    if @list.update_attributes(list_params)
+      flash[:success] = "リスト名を変更しました"
+      redirect_to root_url
+    else
+      render action: :edit
+    end
+  end
+
 
   private
     def list_params
       params.require(:list).permit(:title).merge(user: current_user)
+    end
+
+    def set_list
+      @list = List.find_by(id: params[:id])
     end
 
 end

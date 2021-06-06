@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   end
 
   # リスト関連
-  resources :list, only: %i(new create index)
+  resources :list, only: %i(new create index edit update)
 end
