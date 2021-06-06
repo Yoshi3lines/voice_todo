@@ -1,5 +1,5 @@
 class ListController < ApplicationController
-  before_action :set_list, only: %i(edit update)
+  before_action :set_list, only: %i(edit update destroy)
 
   def new
     @list = List.new
@@ -8,6 +8,7 @@ class ListController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
+      flash[:success] = "リストを作成しました"
       redirect_to :root
     else
       render action: :new
@@ -30,6 +31,12 @@ class ListController < ApplicationController
     else
       render action: :edit
     end
+  end
+
+  def destroy
+    @list.destroy
+    flash[:danger] = "リストを削除しました"
+    redirect_to root_url
   end
 
 
