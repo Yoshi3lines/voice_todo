@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   end
 
   # リスト関連
-  resources :list, only: %i(new create index edit update destroy)
+  resources :list, only: %i(new create index edit update destroy) do
+    resources :card, only: %i(new create)
+  end
 end

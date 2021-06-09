@@ -1,0 +1,13 @@
+.container-list {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+.sub-btn {
+  margin-top: 20px;
+}
+
+.form-f {
+  margin-bottom: 20px;
+}
