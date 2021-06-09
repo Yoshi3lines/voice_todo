@@ -1,3 +1,5 @@
+<%= render 'shared/flash_messages' %> 
+
 <div class="container-list">
     <%= form_with model: @list, url: { action: :update }, class: "edit_list", local: true do |f| %>
       <%
