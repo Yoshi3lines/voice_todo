@@ -36,6 +36,7 @@ class CardController < ApplicationController
   end
 
   def destroy
+    # @card = Card.find_by(id: params[:id])
     @card.destroy
     flash[:danger] = "削除しました"
     redirect_to list_index_path
