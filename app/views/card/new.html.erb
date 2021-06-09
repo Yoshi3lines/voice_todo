@@ -1,3 +1,5 @@
+<%= render 'shared/flash_messages' %> 
+
 <div class="container-list">
     <%= form_with model: @card, url: { action: :create }, html: { class: 'cardnewForm' }, local: true do |f| %>
     <%= f.hidden_field :list_id, value: @list.id %>
