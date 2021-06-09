@@ -9,7 +9,7 @@ class ListController < ApplicationController
     @list = List.new(list_params)
     if @list.save
       flash[:success] = "リストを作成しました"
-      redirect_to :root
+      redirect_to list_index_path
     else
       render action: :new
     end
@@ -27,7 +27,7 @@ class ListController < ApplicationController
     # @list = List.find_by(id: params[:id])
     if @list.update_attributes(list_params)
       flash[:success] = "リスト名を変更しました"
-      redirect_to root_url
+      redirect_to list_index_path
     else
       render action: :edit
     end
@@ -36,7 +36,7 @@ class ListController < ApplicationController
   def destroy
     @list.destroy
     flash[:danger] = "リストを削除しました"
-    redirect_to root_url
+    redirect_to list_index_path
   end
 
 
