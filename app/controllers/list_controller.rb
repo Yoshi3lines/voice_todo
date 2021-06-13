@@ -34,6 +34,8 @@ class ListController < ApplicationController
   end
 
   def destroy
+    public_ids = [@list.audio.file.public_id]
+    Cloudinary::Api.delete_resources(public_ids)
     @list.destroy
     flash[:danger] = "リストを削除しました"
     redirect_to list_index_path
