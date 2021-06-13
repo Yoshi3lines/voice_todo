@@ -1,5 +1,13 @@
 <%= render 'shared/flash_messages' %> 
 
+<div container>
+  <% @lists.each do |t| %>
+
+    <%= audio_tag t.audio_url, :controls => true if t.audio? %>
+
+  <% end %>
+</div>
+
 <div class="topPage">
   <div class="listWrapper">
     <% @lists.each do |list| %>
