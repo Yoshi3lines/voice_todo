@@ -1,13 +1,5 @@
 <%= render 'shared/flash_messages' %> 
 
-<div container>
-  <% @lists.each do |t| %>
-
-    <%= audio_tag t.audio_url, :controls => true if t.audio? %>
-
-  <% end %>
-</div>
-
 <div class="topPage">
   <div class="listWrapper">
     <% @lists.each do |list| %>
@@ -18,6 +10,9 @@
             <%= link_to(content_tag(:i, '', class: 'fas fa-pen'), edit_list_path(list)) %>&nbsp;
             <%= link_to content_tag(:i, '', class: 'fas fa-trash'), list, method: :delete, data: { confirm: "#{list.title}を削除して大丈夫ですか？" } %>
           </div>
+        </div>
+        <div class="audio-content">
+          <%= audio_tag list.audio_url, :controls => true if list.audio? %>
         </div>
 
         <div class="cardWrapper">
