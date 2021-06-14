@@ -3,6 +3,7 @@
   padding-top: 30px;
   background: #bababa;
   overflow-x: scroll;
+  overflow-y: scroll;
   .listWrapper {
     display: flex;
     height: 100%;
@@ -22,12 +23,19 @@
         align-items: center;
         justify-content: space-between;
         &_title {
-          font-size: 20px;
+          font-size: 17px;
           margin: 0;
+          // ここから変更分
+          display: block;
+          width: 100px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          // ここまで
         }
         &_action {
           .fa-pen, .fa-trash {
-            font-size: 18px;
+            font-size: 14px;
             color: #8c8c8c;
           }
           .fa-trash {
@@ -49,7 +57,7 @@
           margin-bottom: 10px;
           padding: 10px;
           &_title {
-            font-size: 17px;
+            font-size: 14px;
           }
           &_detail {
             display: none;
