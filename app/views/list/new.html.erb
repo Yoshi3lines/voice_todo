@@ -9,10 +9,15 @@
       <% end %> 
 <%
 =end%>
-      <div class="text-center">
-        <h2><%= f.label :title %></h2>
+      <div class="form-group">
+        <h2 class="text-center"><%= f.label :title %></h2>
       </div>
       <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "リスト名を入力してください", required: true, minlength: '1', maxlength: '255' %>
+
+      <div class="form-group">
+        <%= f.label :audio %>
+        <%= f.file_field :audio %>
+      </div>
 
       <div class="text-center">
         <%= f.submit "作成する", class: "btn btn-success btn-lg sub-btn" %>

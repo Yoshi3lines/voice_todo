@@ -34,6 +34,10 @@ class ListController < ApplicationController
   end
 
   def destroy
+    if @list.audio.present?
+      public_ids = [@list.audio.file.public_id]
+      Cloudinary::Api.delete_resources(public_ids)
+    end
     @list.destroy
     flash[:danger] = "リストを削除しました"
     redirect_to list_index_path
@@ -42,7 +46,7 @@ class ListController < ApplicationController
 
   private
     def list_params
-      params.require(:list).permit(:title).merge(user: current_user)
+      params.require(:list).permit(:title, :audio).merge(user: current_user)
     end
 
     def set_list
