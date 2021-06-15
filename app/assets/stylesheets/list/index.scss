@@ -12,8 +12,9 @@
       position: relative;
       background: #e2e4e6;
       padding: 10px;
-      margin-left: 20px;
-      min-width: 250px;
+      margin-left: 10px;
+      margin-right: 10px;
+      min-width: 285px;
       &:last-child {
         margin-right: 20px;
       }
@@ -23,7 +24,7 @@
         align-items: center;
         justify-content: space-between;
         &_title {
-          font-size: 17px;
+          font-size: 20px;
           margin: 0;
           // ここから変更分
           display: block;
@@ -57,7 +58,7 @@
           margin-bottom: 10px;
           padding: 10px;
           &_title {
-            font-size: 14px;
+            font-size: 16px;
             // ここから変更分
             display: block;
             width: 150px;
@@ -86,4 +87,13 @@
       }
     }
   }
+}
+
+.audio-content {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+audio {
+  width: 250px;
 }

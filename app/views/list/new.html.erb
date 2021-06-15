@@ -15,8 +15,8 @@
       <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "リスト名を入力してください", required: true, minlength: '1', maxlength: '255' %>
 
       <div class="form-group">
-        <%= f.label :audio %>
-        <%= f.file_field :audio %>
+        <%= f.label :audio, "声に出してコミットしよう", class: "image_input_btn" %>
+        <%= f.file_field :audio, class: "image_form" %>
       </div>
 
       <div class="text-center">
