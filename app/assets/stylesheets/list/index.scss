@@ -58,6 +58,13 @@
           padding: 10px;
           &_title {
             font-size: 14px;
+            // ここから変更分
+            display: block;
+            width: 150px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            // ここまで
           }
           &_detail {
             display: none;
