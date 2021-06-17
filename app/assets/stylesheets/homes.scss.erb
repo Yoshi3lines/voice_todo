@@ -1,12 +1,21 @@
 .main-container {
-  background-image: url("<%= asset_path('sea-ocean.jpg') %>");
-  height: 100vh;
-  background-size: cover;
+  background-image: url("<%= asset_path('sea-ocean.png') %>");
+  background-repeat: no-repeat;
+  background-size: contain;
   //opacity: 0.7;
   border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 980px;
 }
 
 .only_back h1, p {
   color: black;
   margin-top: 10px;
+}
+
+.only_back h1 {
+  font-size: 1.7em;
+  margin-bottom: 30px;
 }

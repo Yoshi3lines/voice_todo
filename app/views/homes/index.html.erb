@@ -4,8 +4,12 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="only_back">
       <h1>あなたの声でコミットするToDoアプリです</h1>
-      <p>達成したいことをあなたの声でコミットしてみよう！</p>
-      <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn btn-primary btn-lg" %>
+      <% if user_signed_in? %>
+        <%= link_to 'まずはリストを作成してみよう！', new_list_path, class: "btn btn-lg btn-primary" %>
+      <% else %>
+        <p>達成したいことをあなたの声でコミットしてみよう！</p>
+        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn btn-primary btn-lg" %>
+      <% end %>
     </div>
   </div>
 </div>
