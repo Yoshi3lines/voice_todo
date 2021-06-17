@@ -17,7 +17,7 @@
 
         <div class="cardWrapper">
           <% list.cards.each do |card| %>
-            <%= link_to list_card_path(list, card), class:"cardDetail_link" do %>
+            <%= link_to list_card_path(list, card), class:"cardDetail_link", remote: true do %>
               <div class="card">
                 <h3 class="card_title"><%= card.title %></h3>
                 <% if card.memo.size > 0 %>
@@ -36,3 +36,7 @@
     <% end %>
   </div>
 </div>
+
+
+<!--モーダルウインドウ表示-->
+<div id="show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

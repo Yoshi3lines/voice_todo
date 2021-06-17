@@ -1,0 +1,41 @@
+<%= render 'shared/flash_messages' %> 
+
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <!--<h1 class="modal-title">カード詳細</h1>-->
+    </div>
+    <div class="modal-body">
+      
+      <!--移行部分-->
+      <div class='carddetailPage'>
+        <div class="container">
+          <div class="cardContents">
+            <div class="cardContents_title">
+              <div>タイトル</div>
+              <h2><%= @card.title %></h2>
+            </div>
+            <div class="cardContents_memo">
+              <div>メモ</div>
+              <div><%= @card.memo %></div>
+            </div>
+            <div class="cardContents_listStatus">
+              <div>リスト名</div>
+              <div><%= @card.list.title %></div>
+            </div>
+            <div class="cardContents_btnArea">
+              <div class="text-center">
+                <%= link_to '編集する', edit_list_card_path(@card.list, @card), class: "btn btn-success btn-lg edit_btn" %>&nbsp;
+                <%= link_to '削除する', list_card_path(@card.list, @card), class: "btn btn-lg btn-danger", method: :delete, data: { confirm: "このカードを削除して大丈夫ですか?" } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--移行部分-->
+    </div>
+  </div>
+</div>
