@@ -4,7 +4,7 @@ class AudioUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.development?
+  if Rails.env.production?
     include Cloudinary::CarrierWave
     CarrierWave.configure do |config|
       config.cache_storage = :file
