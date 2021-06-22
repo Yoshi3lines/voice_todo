@@ -3,7 +3,7 @@ class CardController < ApplicationController
 
   def new
     @card = Card.new
-    @list = List.find_by(id: params[:list_id])
+    @list = List.find(params[:list_id])
   end
 
   def create
@@ -49,7 +49,7 @@ class CardController < ApplicationController
     end
 
     def set_card
-      @card = Card.find_by(id: params[:id])
+      @card = Card.find(params[:id])
     end
 
 end
