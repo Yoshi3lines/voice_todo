@@ -11,9 +11,13 @@
             <%= link_to content_tag(:i, '', class: 'fas fa-trash'), list, method: :delete, data: { confirm: "#{list.title}を削除して大丈夫ですか？" } %>
           </div>
         </div>
-        <div class="audio-content">
+        <%
+=begin%>
+ <div class="audio-content">
           <%= audio_tag list.audio_url, :controls => true if list.audio? %>
-        </div>
+        </div> 
+<%
+=end%>
 
         <div class="cardWrapper">
           <% list.cards.each do |card| %>
