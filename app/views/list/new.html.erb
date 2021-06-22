@@ -14,14 +14,10 @@
       </div>
       <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "リスト名を入力してください", required: true, minlength: '1', maxlength: '255' %>
 
-      <%
-=begin%>
- <div class="form-group">
+      <div class="form-group">
         <%= f.label :audio, "声に出してコミットしてみよう", class: "image_input_btn" %>
         <%= f.file_field :audio, class: "image_form" %>
-      </div> 
-<%
-=end%>
+      </div>
 
       <div class="text-center">
         <%= f.submit "作成する", class: "btn btn-success btn-lg sub-btn" %>
