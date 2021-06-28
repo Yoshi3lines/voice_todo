@@ -16,7 +16,13 @@ class ListController < ApplicationController
   end
 
   def index
-    @lists = List.where(user: current_user).order("created_at ASC")
+    # @lists = List.where(user: current_user).order("created_at ASC")
+    @show = params[:show]
+    if @show == "all" then
+      @lists = List.where(user: current_user).order("created_at ASC")
+    else
+      @lists = List.where(user: current_user, completed: 0).order("created_at ASC")
+    end
   end
 
   def edit
@@ -46,7 +52,7 @@ class ListController < ApplicationController
 
   private
     def list_params
-      params.require(:list).permit(:title, :audio).merge(user: current_user)
+      params.require(:list).permit(:title, :audio, :completed).merge(user: current_user)
     end
 
     def set_list

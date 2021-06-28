@@ -1,5 +1,15 @@
 <%= render 'shared/flash_messages' %> 
 
+<div class="nav">
+  <% if @show %>
+    <%= link_to 'すべて', list_index_path(:show=>'all'), class: 'btn btn-primary btn-sm' %>
+    <%= link_to '未完了', list_index_path, class: 'btn btn-outline-primary btn-sm ml-2' %>
+  <% else %>
+    <%= link_to 'すべて', list_index_path(:show=>'all'), class: 'btn btn-outline-primary btn-sm' %>
+    <%= link_to '未完了', list_index_path, class: 'btn btn-primary btn-sm ml-2' %>
+  <% end %>
+</div>
+
 <div class="topPage">
   <div class="listWrapper">
     <% @lists.each do |list| %>
