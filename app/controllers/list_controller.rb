@@ -9,7 +9,7 @@ class ListController < ApplicationController
     @list = List.new(list_params)
     if @list.save
       flash[:success] = "リストを作成しました"
-      redirect_to list_index_path
+      redirect_to list_index_path(:show=>'all')
     else
       render action: :new
     end
@@ -33,7 +33,7 @@ class ListController < ApplicationController
     # @list = List.find_by(id: params[:id])
     if @list.update_attributes(list_params)
       flash[:success] = "リスト名を変更しました"
-      redirect_to list_index_path
+      redirect_to list_index_path(:show=>'all')
     else
       render action: :edit
     end
@@ -46,7 +46,7 @@ class ListController < ApplicationController
     end
     @list.destroy
     flash[:danger] = "リストを削除しました"
-    redirect_to list_index_path
+    redirect_to list_index_path(:show=>'all')
   end
 
 
