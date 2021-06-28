@@ -15,7 +15,7 @@
     <% @lists.each do |list| %>
       <div class="list">
         <div class="list_header">
-          <h2 class="list_header_title", data-toggle="tooltip" title="コミット日 <%= list.created_at.strftime('%Y/%m/%d') %>">
+          <h2 class="list_header_title", data-toggle="tooltip" data-placement="top" title="コミット日 <%= list.created_at.strftime('%Y/%m/%d') %>">
             <%= list.title %>
           </h2> 
           <div class="list_header_action">
