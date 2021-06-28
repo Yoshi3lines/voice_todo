@@ -9,10 +9,15 @@
       <% end %> 
 <%
 =end%>
-      <div class="text-center">
-        <h1><%= f.label :リストタイトル %></h1>
+      <div class="form-group">
+        <h2><%= f.label :リストタイトル %></h2>
+        <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "リスト名を入力してください", required: true, minlength: '1', maxlength: '255' %>
       </div>
-      <%= f.text_field :title, autofocus: true, class: "form-control", placeholder: "リスト名を入力してください", required: true, minlength: '1', maxlength: '255' %>
+
+      <div class="form-group">
+        <h2><%= f.label :"リストの状態: 完了 or 未完了" %></h2>
+        <%= f.select :completed, [['未完了',0],['完了',1]], {}, class: 'form-control', id: 'list_completed' %>
+      </div>
 
       <div class="text-center">
         <%= f.submit "編集する", class: "btn btn-success btn-lg sub-btn" %>
