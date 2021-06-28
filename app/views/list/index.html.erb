@@ -11,6 +11,11 @@
             <%= link_to content_tag(:i, '', class: 'fas fa-trash'), list, method: :delete, data: { confirm: "#{list.title}を削除して大丈夫ですか？" } %>
           </div>
         </div>
+
+        <div id="btn-index">
+          <p class="text-left">Commitment at　<%= list.created_at.strftime('%Y/%m/%d') %></p>
+        </div>
+
         <div class="audio-content">
           <%= audio_tag list.audio_url, :controls => true if list.audio? %>
         </div>
