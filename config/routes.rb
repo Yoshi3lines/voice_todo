@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :list, only: %i(new create index edit update destroy) do
     resources :card, only: %i(new create show edit update destroy)
   end
+
+  patch 'list/:id/sort', to: 'list#sort'
 end

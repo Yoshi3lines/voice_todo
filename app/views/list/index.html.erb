@@ -1,12 +1,18 @@
 <%= render 'shared/flash_messages' %> 
 
 <div class="nav">
-  <% if @show %>
-    <%= link_to 'すべて', list_index_path(:show=>'all'), class: 'btn btn-primary btn-sm' %>
-    <%= link_to '未完了', list_index_path, class: 'btn btn-outline-primary btn-sm ml-2' %>
+  <% if @view == "comp" %>
+    <%= link_to 'すべて', list_index_path, class: 'btn btn-outline-primary btn-sm' %>
+    <%= link_to '完了', list_index_path(:view=>'comp'), class: 'btn btn-primary btn-sm ml-2' %>
+    <%= link_to '未完了', list_index_path(:view=>'not'), class: 'btn btn-outline-primary btn-sm ml-2' %>
+  <% elsif @view == "not" %>
+    <%= link_to 'すべて', list_index_path, class: 'btn btn-outline-primary btn-sm' %>
+    <%= link_to '完了', list_index_path(:view=>'comp'), class: 'btn btn-outline-primary btn-sm ml-2' %>
+    <%= link_to '未完了', list_index_path(:view=>'not'), class: 'btn btn-primary btn-sm ml-2' %>
   <% else %>
-    <%= link_to 'すべて', list_index_path(:show=>'all'), class: 'btn btn-outline-primary btn-sm' %>
-    <%= link_to '未完了', list_index_path, class: 'btn btn-primary btn-sm ml-2' %>
+    <%= link_to 'すべて', list_index_path, class: 'btn btn-primary btn-sm' %>
+    <%= link_to '完了', list_index_path(:view=>'comp'), class: 'btn btn-outline-primary btn-sm ml-2' %>
+    <%= link_to '未完了', list_index_path(:view=>'not'), class: 'btn btn-outline-primary btn-sm ml-2' %>
   <% end %>
 </div>
 
@@ -28,17 +34,16 @@
           <%= audio_tag list.audio_url, :controls => true if list.audio? %>
         </div>
 
-        <div id="sortable_list">
-        <div class="cardWrapper">
+        <div class="cardWrapper" id="sortable_list<%= list.id %>" key = "<%= list.id %>">
           <% list.cards.each do |card| %>
+          <div class="card">
             <%= link_to list_card_path(list, card), class:"cardDetail_link", remote: true do %>
-              <div class="card">
-                <h3 class="card_title"><%= card.title %></h3>
+                <h3 id="<%= card.id %>" class="card_title"><%= card.title %></h3>
                 <% if card.memo.size > 0 %>
                   <div class="card_detail is-exist"><i class="fas fa-bars"></i></div>
                 <% end %>
-              </div>
             <% end %>
+          </div>
           <% end %>
 
           <div class="addCard">
@@ -46,7 +51,6 @@
             <%= link_to "さらにカードを追加", new_list_card_path(list), class: "addCard_link" %>
           </div>
         </div>
-      </div>
       </div>
     <% end %>
   </div>
@@ -60,4 +64,42 @@
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+let list_ids = <%= @lists_ids %>
+const list_objs = list_ids.map((list_id) => {
+  eval(`var sortableList${list_id}=document.getElementById("sortable_list${list_id}");`);
+  return eval(`sortableList${list_id}`)
+})
+console.log(list_objs);
+
+const getCsrfToken = () => {
+        const metas = document.getElementsByTagName('meta');
+        for (let meta of metas) {
+            if (meta.getAttribute('name') === 'csrf-token') {
+                console.log(meta.getAttribute('content'));
+                return meta.getAttribute('content');
+            }
+        }
+        return '';
+    }
+
+list_objs.forEach((dom) => {
+  Sortable.create(dom, {
+      animation: 150,
+      ghostClass: 'blue-background-class',
+      onUpdate: function(evt) {
+        let list_id = dom.getAttribute("key")
+        fetch(`http://localhost:3000/list/${list_id}/sort`,{
+          method: 'PATCH',
+          headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': getCsrfToken()
+            },
+          body: JSON.stringify({ from: evt.oldIndex + 1, to: evt.newIndex + 1 })
+        }).then((res) => {console.log(res);})
+      }
+    }
+  )
+});
+
 </script>

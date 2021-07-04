@@ -9,7 +9,7 @@ class ListController < ApplicationController
     @list = List.new(list_params)
     if @list.save
       flash[:success] = "リストを作成しました"
-      redirect_to list_index_path(:show=>'all')
+      redirect_to list_index_path
     else
       render action: :new
     end
@@ -17,12 +17,15 @@ class ListController < ApplicationController
 
   def index
     # @lists = List.where(user: current_user).order("created_at ASC")
-    @show = params[:show]
-    if @show == "all" then
-      @lists = List.where(user: current_user).order("created_at ASC")
-    else
+    @view = params[:view]
+    if @view == "comp" then
+      @lists = List.where(user: current_user, completed: 1).order("created_at ASC")
+    elsif @view == "not" then
       @lists = List.where(user: current_user, completed: 0).order("created_at ASC")
+    else
+      @lists = List.where(user: current_user).order("created_at ASC")
     end
+    @lists_ids = @lists.ids
   end
 
   def edit
@@ -33,7 +36,7 @@ class ListController < ApplicationController
     # @list = List.find_by(id: params[:id])
     if @list.update_attributes(list_params)
       flash[:success] = "リスト名を変更しました"
-      redirect_to list_index_path(:show=>'all')
+      redirect_to list_index_path
     else
       render action: :edit
     end
@@ -44,10 +47,19 @@ class ListController < ApplicationController
       public_ids = [@list.audio.file.public_id]
       Cloudinary::Api.delete_resources(public_ids)
     end
-    @list.destroy
-    flash[:danger] = "リストを削除しました"
-    redirect_to list_index_path(:show=>'all')
+    if @list.destroy
+      flash[:danger] = "リストを削除しました"
+      redirect_to list_index_path
+    end
   end
+
+  def sort
+    @list = List.find(params[:id])
+    child = @list.cards.find_by(position: params[:from].to_i)
+    child.insert_at(params[:to].to_i)
+    head :ok
+  end
+  
 
 
   private
