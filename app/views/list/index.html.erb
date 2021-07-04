@@ -90,7 +90,7 @@ list_objs.forEach((dom) => {
       onUpdate: function(evt) {
         let list_id = dom.getAttribute("key")
         // fetch(`http://localhost:3000/list/${list_id}/sort`,{
-        fetch(`https://voicetodo.herokuapp.com//list/${list_id}/sort`,{
+        fetch(`https://voicetodo.herokuapp.com/list/${list_id}/sort`,{
           method: 'PATCH',
           headers: {
                 'Content-Type': 'application/json',
