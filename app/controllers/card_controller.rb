@@ -10,7 +10,7 @@ class CardController < ApplicationController
     @card = Card.new(card_params)
     if @card.save
       flash[:success] = "カードを作成しました"
-      redirect_to list_index_path(:show=>'all')
+      redirect_to list_index_path
     else
       render action: :new
     end
@@ -29,7 +29,7 @@ class CardController < ApplicationController
     # @card = Card.find_by(id: params[:id])
     if @card.update_attributes(card_params)
       flash[:success] = "カードを更新しました"
-      redirect_to list_index_path(:show=>'all')
+      redirect_to list_index_path
     else
       render action: :edit
     end
@@ -39,13 +39,13 @@ class CardController < ApplicationController
     # @card = Card.find_by(id: params[:id])
     @card.destroy
     flash[:danger] = "削除しました"
-    redirect_to list_index_path(:show=>'all')
+    redirect_to list_index_path
   end
 
 
   private
     def card_params
-      params.require(:card).permit(:title, :memo, :list_id)
+      params.require(:card).permit(:title, :memo, :list_id, :position)
     end
 
     def set_card
