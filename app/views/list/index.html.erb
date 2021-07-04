@@ -28,6 +28,7 @@
           <%= audio_tag list.audio_url, :controls => true if list.audio? %>
         </div>
 
+        <div id="sortable_list">
         <div class="cardWrapper">
           <% list.cards.each do |card| %>
             <%= link_to list_card_path(list, card), class:"cardDetail_link", remote: true do %>
@@ -45,6 +46,7 @@
             <%= link_to "さらにカードを追加", new_list_card_path(list), class: "addCard_link" %>
           </div>
         </div>
+      </div>
       </div>
     <% end %>
   </div>
