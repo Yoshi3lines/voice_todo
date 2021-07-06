@@ -49,6 +49,8 @@ gem 'dotenv-rails'
 
 # リスト関係
 gem 'acts_as_list'
+gem 'redcarpet', '~> 2.3.0'
+gem 'coderay'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
