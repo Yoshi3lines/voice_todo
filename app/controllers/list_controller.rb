@@ -19,11 +19,11 @@ class ListController < ApplicationController
     # @lists = List.where(user: current_user).order("created_at ASC")
     @view = params[:view]
     if @view == "comp" then
-      @lists = List.where(user: current_user, completed: 1)
+      @lists = List.where(user: current_user, completed: 1).order("created_at ASC")
     elsif @view == "not" then
-      @lists = List.where(user: current_user, completed: 0)
+      @lists = List.where(user: current_user, completed: 0).order("created_at ASC")
     else
-      @lists = List.where(user: current_user)
+      @lists = List.where(user: current_user).order("created_at ASC")
     end
     @lists_ids = @lists.ids
   end
