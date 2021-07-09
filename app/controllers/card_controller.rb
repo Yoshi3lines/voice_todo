@@ -1,6 +1,7 @@
 class CardController < ApplicationController
   before_action :authenticate_user!
   before_action :set_card, only: %i(show edit update destroy)
+  before_action :ensure_correct_user, only: %i(edit)
 
   def new
     @card = Card.new
@@ -39,7 +40,7 @@ class CardController < ApplicationController
   def destroy
     # @card = Card.find_by(id: params[:id])
     @card.destroy
-    flash[:danger] = "削除しました"
+    flash[:danger] = "カードを削除しました"
     redirect_to list_index_path
   end
 
@@ -52,6 +53,15 @@ class CardController < ApplicationController
 
     def set_card
       @card = Card.find(params[:id])
+    end
+
+    def ensure_correct_user
+      @card = Card.find(params[:id])
+      @list = List.find_by(id: params[:list_id])
+      if @list.user_id != current_user.id
+        flash[:danger] = "権限がありません"
+        redirect_to root_path
+      end
     end
 
 end
