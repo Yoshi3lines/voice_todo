@@ -1,11 +1,12 @@
 class ListController < ApplicationController
   before_action :authenticate_user!
   before_action :set_list, only: %i(edit update destroy)
+  before_action :ensure_correct_user, only: %i(edit update destroy)
 
   def new
     @list = List.new
   end
-
+  
   def create
     @list = List.new(list_params)
     if @list.save
@@ -73,6 +74,13 @@ class ListController < ApplicationController
 
     def set_list
       @list = List.find(params[:id])
+    end
+
+    def ensure_correct_user
+      if @list.user_id != current_user.id
+        flash[:danger] = "権限がありません"
+        redirect_to root_path
+      end
     end
 
 end
