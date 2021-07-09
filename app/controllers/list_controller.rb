@@ -1,4 +1,5 @@
 class ListController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_list, only: %i(edit update destroy)
 
   def new
@@ -50,6 +51,9 @@ class ListController < ApplicationController
     if @list.destroy
       flash[:danger] = "リストを削除しました"
       redirect_to list_index_path
+    else
+      flash[:danger] = "リストが削除できませんでした"
+      redirect_to list_index_path
     end
   end
 
@@ -59,10 +63,10 @@ class ListController < ApplicationController
     child.insert_at(params[:to].to_i)
     head :ok
   end
-  
 
 
   private
+  
     def list_params
       params.require(:list).permit(:title, :audio, :completed).merge(user: current_user)
     end

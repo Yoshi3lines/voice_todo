@@ -1,4 +1,5 @@
 class CardController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_card, only: %i(show edit update destroy)
 
   def new
@@ -44,6 +45,7 @@ class CardController < ApplicationController
 
 
   private
+  
     def card_params
       params.require(:card).permit(:title, :memo, :list_id, :position)
     end
